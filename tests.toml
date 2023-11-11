@@ -15,7 +15,7 @@ test_format = 1.0
     #
     # You can also decide (though this is discouraged!) to ban/ignore some tests,
 
-    exclude = ["install.private", "install.multi"]
+    exclude = ["install.subdir", "install.nourl"]
     # The test IDs to be used in only/exclude statements are:
     # * install.root
     # * install.subdir
@@ -27,14 +27,6 @@ test_format = 1.0
     # * change_url
     # NB: you should NOT need this except if you really have a good reason...
 
-    # For special usecases, sometimes you need to setup other things on the machine
-    # prior to installing the app (such as installing another app)
-    # (Remove this key entirely if not needed)
-    preinstall = """
-    sudo yunohost app install foobar
-    sudo yunohost user list
-    """
-
     # -------------------------------
     # Default args to use for install
     # -------------------------------
@@ -44,17 +36,8 @@ test_format = 1.0
     # and also install args with a "default" provided in the manifest..
     # It should only make sense to declare custom args here for args with no default values
 
-    args.language = "fr_FR"
-    args.multisite = 0
+    args.language = "fr"
     # NB: you should NOT need those lines unless for custom questions with no obvious/default value
-
-    # -------------------------------
-    # Commits to test upgrade from
-    # -------------------------------
-
-    test_upgrade_from.00a1a6e7.name = "Upgrade from 5.4"
-    test_upgrade_from.00a1a6e7.args.foo = "bar"
-
 
 # This is an additional test suite
 [some_additional_testsuite]
@@ -63,5 +46,4 @@ test_format = 1.0
 
     only = ["install.subdir"]
 
-    args.language = "en_GB"
-    args.multisite = 1
+    args.language = "en"
