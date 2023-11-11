@@ -25,6 +25,9 @@ ynh_script_progression --message="Updating NGINX web server configuration..." --
 
 ynh_change_url_nginx_config
 
+ynh_script_progression --message="Updating env configuration file..." --weight=1
+ynh_add_config --template="default.env" --destination="$install_dir/default.env"
+
 #=================================================
 # SPECIFIC MODIFICATIONS
 #=================================================

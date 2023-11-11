@@ -51,14 +51,27 @@ fi
 # ownership to all files such as after the ynh_setup_source step
 chown -R $app:www-data "$install_dir"
 
+if [ "$upgrade_type" == "UPGRADE_APP" ]
+then
+  pushd "$install_dir"
+    ynh_use_nodejs
+    ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install --pure-lockfile
+    ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install:python
+    ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH:$install_dir/node_modules/.bin yarn run build:prod
+    ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn cache clean
+  popd
+
+  pushd "$install_dir/sandbox/pyodide"
+    ynh_exec_warn_less ynh_exec_as $app make setup
+  popd
+fi
+
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
 ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
 
 # This should be a literal copypaste of what happened in the install's "System configuration" section
-
-ynh_add_fpm_config
 
 ynh_add_nginx_config
 
@@ -67,8 +80,6 @@ ynh_add_systemd_config
 yunohost service add $app --description="A short description of the app" --log="/var/log/$app/$app.log"
 
 ynh_use_logrotate --non-append
-
-ynh_add_fail2ban_config --logpath="/var/log/nginx/${domain}-error.log" --failregex="Regex to match into the log for a failed login"
 
 #=================================================
 # RECONFIGURE THE APP (UPDATE CONF, APPLY MIGRATIONS...)
@@ -82,7 +93,7 @@ ynh_script_progression --message="Updating a configuration file..." --weight=1
 ### The file will automatically be backed-up if it's found to be manually modified (because
 ### ynh_add_config keeps track of the file's checksum)
 
-ynh_add_config --template="some_config_file" --destination="$install_dir/some_config_file"
+ynh_add_config --template="default.env" --destination="$install_dir/default.env"
 
 # FIXME: this should be handled by the core in the future
 # You may need to use chmod 600 instead of 400,

@@ -30,7 +30,7 @@ pushd "$install_dir"
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install --pure-lockfile
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install:python
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH:$install_dir/node_modules/.bin yarn run build:prod
-	# ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn cache clean
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn cache clean
 popd
 
 pushd "$install_dir/sandbox/pyodide"
