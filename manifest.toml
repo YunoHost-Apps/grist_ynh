@@ -104,13 +104,6 @@ ram.runtime = "50M"
     # and implicitly define the $phpversion setting as 8.0 (if phpX.Y-foobar dependencies are listed)
     packages = "python3.9 python3.9-venv"
 
-    # extras.gvisor.repo="deb https://storage.googleapis.com/gvisor/releases release main"
-    # extras.gvisor.key="https://gvisor.dev/archive.key"
-    # extras.gvisor.packages=[ "runsc" ]
-
     extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
     extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
     extras.yarn.packages = ["yarn"]
-
-    [resources.database]
-    type = "postgresql"
