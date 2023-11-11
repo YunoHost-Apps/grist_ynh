@@ -18,6 +18,8 @@ source /usr/share/yunohost/helpers
 # - $port
 # ...
 
+redis_db=$(ynh_app_setting_get --app=$app --key=redis_db)
+
 # In the context of upgrade,
 # - resources are automatically provisioned / updated / deleted (depending on existing resources)
 # - a safety backup is automatically created by the core and will be restored if the upgrade fails
@@ -76,7 +78,7 @@ then
 	ynh_setup_source --dest_dir="$install_dir"
 fi
 
-# $install_dir will automatically be initialized with some decent 
+# $install_dir will automatically be initialized with some decent
 # permissions by default ... however, you may need to recursively reapply
 # ownership to all files such as after the ynh_setup_source step
 chown -R $app:www-data "$install_dir"

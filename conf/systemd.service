@@ -1,5 +1,5 @@
 [Unit]
-Description=Small description of the service
+Description=Grist is the evolution of spreadsheets.
 After=network.target
 
 [Service]
@@ -7,9 +7,10 @@ Type=simple
 User=__APP__
 Group=__APP__
 WorkingDirectory=__INSTALL_DIR__/
-ExecStart=__INSTALL_DIR__/script
-StandardOutput=append:/var/log/__APP__/__APP__.log
-StandardError=inherit
+ExecStart=__INSTALL_DIR__/sandbox/run.sh
+StandardOutput=journal
+StandardError=journal
+EnvironmentFile=__INSTALL_DIR__/default.env
 
 # Sandboxing options to harden security
 # Depending on specificities of your service/app, you may need to tweak these
