@@ -11,6 +11,12 @@ source ../settings/scripts/_common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
+# INSTALL NODEJS
+#=================================================
+ynh_script_progression --message="Reinstalling dependencies..." --weight=1
+
+ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
+#=================================================
 # RESTORE THE APP MAIN DIR
 #=================================================
 ynh_script_progression --message="Restoring the app main directory..." --weight=1

@@ -3,6 +3,13 @@
 #=================================================
 # GENERIC START
 #=================================================
+# INSTALL NODEJS
+#=================================================
+ynh_script_progression --message="Upgrading dependencies..." --weight=1
+
+ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
+
+#=================================================
 # IMPORT GENERIC HELPERS
 #=================================================
 
