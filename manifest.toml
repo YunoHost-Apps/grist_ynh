@@ -13,7 +13,7 @@ maintainers = ["fflorent"]
 
 [upstream]
 # NB: Only the "license" key is mandatory. Remove entries for which there's no relevant data
-license = "free"
+license = "AGPL-3.0-only"
 website = "https://getgrist.com"
 demo = "https://docs.getgrist.com"
 admindoc = "https://www.getgrist.com/product/self-managed/"
