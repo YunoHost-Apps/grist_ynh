@@ -1,0 +1,47 @@
+version = "1.0"
+
+################################################################################
+#### ABOUT PANELS
+################################################################################
+
+[main]
+
+name.en = "Main configuration"
+name.fr = "Configuration principale"
+
+services = ["__APP__"]
+
+    ############################################################################
+    #### ABOUT SECTIONS
+    ############################################################################
+
+    [main.customization]
+
+    name.fr = "Personnalisation de votre instance Grist"
+    name.en = "Customize your Grist instance"
+
+    ## (optional) It's also possible with the 'visible' property to only
+    ## display the section depending on the user's answers to previous questions.
+    ##
+    ## Be careful that the 'visible' property should only refer to **previous** questions
+    ## Hence, it should not make sense to have a "visible" property on the very first section.
+    ##
+    ## Also, keep in mind that this feature only works in the webadmin and not in CLI
+    ## (therefore a user could be prompted in CLI for a question that may not be relevant)
+    # visible = true
+
+        ########################################################################
+        #### ABOUT QUESTIONS
+        ########################################################################
+
+        ## A section is compound of one or several questions.
+
+        [main.customization.widget_list_url]
+
+        ask.en = "Widgets URL"
+        ask.fr = "URL des Widgets"
+        type = "url"
+
+        help.fr = "Spécifiez l'URL pointant vers le manifeste des Widgets. Par défaut https://github.com/gristlabs/grist-widget/releases/download/latest/manifest.json est utilisé"
+        help.en = "Specify the url pointing to a widget manifest, by default https://github.com/gristlabs/grist-widget/releases/download/latest/manifest.json is used"
+        bind = "GRIST_WIDGET_LIST_URL:/var/www/__APP__/default.env"

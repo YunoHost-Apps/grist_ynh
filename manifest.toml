@@ -33,14 +33,14 @@ yunohost = ">= 11.1.21"
 architectures = "all"
 multi_instance = true
 
-ldap = "true"
+ldap = true
 
-sso = "true"
+sso = true
 
 # FIXME: replace with an **estimate** minimum disk and RAM requirements. e.g. 20M, 400M, 1G...
 disk = "15G"
 ram.build = "1500M"
-ram.runtime = "50M"
+ram.runtime = "400M"
 
 [install]
     [install.domain]
@@ -94,6 +94,10 @@ ram.runtime = "50M"
     # This will configure SSOwat permission for $domain/$path/
     # The initial allowed group of user is configured via the init_main_permission question (public=visitors, private=all_users)
     main.url = "/"
+
+    login.url = "/auth/login"
+    login.show_tile = false
+    login.allowed = "all_users"
 
     [resources.ports]
     # This will pick a random port for reverse-proxying and store it as the $port setting
