@@ -19,13 +19,6 @@ demo = "https://docs.getgrist.com"
 admindoc = "https://www.getgrist.com/product/self-managed/"
 userdoc = "https://support.getgrist.com/"
 code = "https://github.com/gristlabs/grist-core/"
-# FIXME: optional but recommended if relevant, this is meant to contain the Common Platform Enumeration, which is
-# sort of a standard id for applications defined by the NIST. In particular, YunoHost may use this is in the future
-# to easily track CVE (=security reports) related to apps. The CPE may be obtained by searching here:
-# https://nvd.nist.gov/products/cpe/search.
-# For example, for Nextcloud, the CPE is 'cpe:2.3:a:nextcloud:nextcloud' (no need to include the version number)
-cpe = "???"
-
 fund = "https://github.com/sponsors/gristlabs"
 
 [integration]
