@@ -30,10 +30,9 @@ ldap = true
 
 sso = true
 
-# FIXME: replace with an **estimate** minimum disk and RAM requirements. e.g. 20M, 400M, 1G...
-disk = "15G"
+disk = "1.5G"
 ram.build = "1500M"
-ram.runtime = "400M"
+ram.runtime = "150M"
 
 [install]
     [install.domain]
