@@ -8,42 +8,4 @@ test_format = 1.0
     # Tests to run
     # ------------
 
-    # NB: the tests to run are automatically deduced by the CI script according to the
-    # content of the app's manifest. The declarations below allow to customize which
-    # tests are ran, possibly add special test suite to test special args, or
-    # declare which commits to test upgrade from.
-    #
-    # You can also decide (though this is discouraged!) to ban/ignore some tests,
-
     exclude = ["install.subdir", "install.nourl"]
-    # The test IDs to be used in only/exclude statements are:
-    # * install.root
-    # * install.subdir
-    # * install.nourl
-    # * install.multi
-    # * backup_restore
-    # * upgrade
-    # * upgrade.someCommitId
-    # * change_url
-    # NB: you should NOT need this except if you really have a good reason...
-
-    # -------------------------------
-    # Default args to use for install
-    # -------------------------------
-
-    # By default, the CI will automagically fill the 'standard' args
-    # such as domain, path, admin, is_public and password with relevant values
-    # and also install args with a "default" provided in the manifest..
-    # It should only make sense to declare custom args here for args with no default values
-
-    args.language = "fr"
-    # NB: you should NOT need those lines unless for custom questions with no obvious/default value
-
-# This is an additional test suite
-[some_additional_testsuite]
-
-    # On additional tests suites, you can decide to run only specific tests
-
-    only = ["install.subdir"]
-
-    args.language = "en"
