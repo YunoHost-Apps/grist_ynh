@@ -7,12 +7,11 @@ name = "Grist"
 description.en = "Modern relational spreadsheet"
 description.fr = "Feuille de calcul relationnelle moderne"
 
-version = "1.1.5~ynh2"
+version = "1.1.5~ynh1"
 
 maintainers = ["fflorent"]
 
 [upstream]
-# NB: Only the "license" key is mandatory. Remove entries for which there's no relevant data
 license = "AGPL-3.0-only"
 website = "https://getgrist.com"
 demo = "https://docs.getgrist.com"
@@ -36,12 +35,9 @@ ram.runtime = "150M"
 
 [install]
     [install.domain]
-    # this is a generic question - ask strings are automatically handled by YunoHost's core
     type = "domain"
 
     [install.init_main_permission]
-    # this is a generic question - ask strings are automatically handled by YunoHost's core
-    # This won't be saved as setting and will instead be used to initialize the SSOwat permission
     type = "group"
     default = "visitors"
 
@@ -53,51 +49,34 @@ ram.runtime = "150M"
     default = "en"
 
     [install.admin]
-    # this is a generic question - ask strings are automatically handled by YunoHost's core
     type = "user"
 
 [resources]
-    # See the packaging documentation for the full set
-    # of explanation regarding the behavior and properties for each of those
 
     [resources.sources]
 
         [resources.sources.main]
-        # This will pre-fetch the asset which can then be deployed during the install/upgrade scripts with :
-        #    ynh_setup_source --dest_dir="$install_dir"
-        # You can also define other assets than "main" and add --source_id="foobar" in the previous command
         url = "https://github.com/gristlabs/grist-core/archive/refs/tags/v1.1.5.tar.gz"
         sha256 = "3119ba9be40d2adfca547cc80ecf9114e4b218449d84c7231a44f5fc0b5f0f4b"
 
         autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
-    # This will provision/deprovision a unix system user
 
     [resources.install_dir]
-    # This will create/remove the install dir as /var/www/$app
-    # and store the corresponding setting $install_dir
 
     [resources.data_dir]
-    # This will create/remove the data dir as /home/yunohost.app/$app
-    # and store the corresponding setting $data_dir
 
     [resources.permissions]
-    # This will configure SSOwat permission for $domain/$path/
-    # The initial allowed group of user is configured via the init_main_permission question (public=visitors, private=all_users)
     main.url = "/"
-
     login.url = "/auth/login"
     login.show_tile = false
     login.allowed = "all_users"
 
     [resources.ports]
-    # This will pick a random port for reverse-proxying and store it as the $port setting
     main.default = 8484
 
     [resources.apt]
-    # This will automatically install/uninstall the following apt packages
-    # and implicitly define the $phpversion setting as 8.0 (if phpX.Y-foobar dependencies are listed)
     packages = "python3.9, python3.9-venv"
 
     extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
