@@ -4,8 +4,8 @@ packaging_format = 2
 
 id = "grist"
 name = "Grist"
-description.en = "Grist is the evolution of spreadsheets"
-description.fr = "Grist est l'évolution des tableurs"
+description.en = "Modern relational spreadsheet"
+description.fr = "Feuille de calcul relationnelle moderne"
 
 version = "1.1.5~ynh2"
 
