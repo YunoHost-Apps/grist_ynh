@@ -8,7 +8,6 @@
 
 source _common.sh
 source /usr/share/yunohost/helpers
-source ynh_redis
 
 #=================================================
 # APP "BUILD" (DEPLOYING SOURCES, VENV, COMPILING ETC)
@@ -28,9 +27,6 @@ ynh_script_progression --message="Setting up source files..." --weight=1
 # Download, check integrity, uncompress and patch the source from manifest.toml
 ynh_setup_source --dest_dir="$install_dir"
 
-# $install_dir will automatically be initialized with some decent
-# permission by default ... however, you may need to recursively reapply
-# ownership to all files such as after the ynh_setup_source step
 chown -R $app:www-data "$install_dir"
 
 pushd "$install_dir"
@@ -45,7 +41,6 @@ pushd "$install_dir/sandbox/pyodide"
 	ynh_exec_warn_less ynh_exec_as $app make setup
 popd
 
-
 #=================================================
 # SYSTEM CONFIGURATION
 #=================================================
@@ -57,7 +52,7 @@ ynh_add_nginx_config
 # Create a dedicated systemd config
 ynh_add_systemd_config
 
-yunohost service add $app --description="Grist is the evolution of spreadsheets." --log="/var/log/$app/$app.log"
+yunohost service add $app --description="Modern relational spreadsheet" --log="/var/log/$app/$app.log"
 
 # Use logrotate to manage application logfile(s)
 ynh_use_logrotate
@@ -78,9 +73,6 @@ ynh_script_progression --message="Adding a configuration file..." --weight=1
 
 ynh_add_config --template="default.env" --destination="$install_dir/default.env"
 
-# FIXME: this should be handled by the core in the future
-# You may need to use chmod 600 instead of 400,
-# for example if the app is expected to be able to modify its own config
 chmod 400 "$install_dir/default.env"
 chown $app:$app "$install_dir/default.env"
 

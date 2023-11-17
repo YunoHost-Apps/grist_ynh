@@ -8,7 +8,6 @@
 
 source _common.sh
 source /usr/share/yunohost/helpers
-source ynh_redis
 
 #=================================================
 # REMOVE SYSTEM CONFIGURATIONS
@@ -16,9 +15,8 @@ source ynh_redis
 # REMOVE SYSTEMD SERVICE
 #=================================================
 ynh_script_progression --message="Removing system configurations related to $app..." --weight=1
-redis_db=$(ynh_app_setting_get --app=$app --key=redis_db)
 
-# This should be a symetric version of what happens in the install script
+redis_db=$(ynh_app_setting_get --app=$app --key=redis_db)
 
 # Remove the service from the list of services known by YunoHost (added from `yunohost service add`)
 if ynh_exec_warn_less yunohost service status $app >/dev/null
@@ -34,8 +32,6 @@ ynh_remove_nginx_config
 ynh_remove_logrotate
 
 ynh_redis_remove_db "$redis_db"
-
-# Remove other various files specific to the app... such as :
 
 ynh_secure_remove --file="/var/log/$app"
 
