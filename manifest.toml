@@ -4,8 +4,8 @@ packaging_format = 2
 
 id = "grist"
 name = "Grist"
-description.en = "Grist is the evolution of spreadsheets."
-description.fr = "Grist est l'évolution des tableurs."
+description.en = "Grist is the evolution of spreadsheets"
+description.fr = "Grist est l'évolution des tableurs"
 
 version = "1.1.5~ynh2"
 
@@ -29,7 +29,7 @@ cpe = "???"
 fund = "https://github.com/sponsors/gristlabs"
 
 [integration]
-yunohost = ">= 11.1.21"
+yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = true
 
@@ -106,7 +106,7 @@ ram.runtime = "400M"
     [resources.apt]
     # This will automatically install/uninstall the following apt packages
     # and implicitly define the $phpversion setting as 8.0 (if phpX.Y-foobar dependencies are listed)
-    packages = "python3.9 python3.9-venv"
+    packages = "python3.9, python3.9-venv"
 
     extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
     extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
