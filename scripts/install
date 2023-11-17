@@ -7,8 +7,8 @@
 #=================================================
 
 source _common.sh
-source /usr/share/yunohost/helpers
 source ynh_redis
+source /usr/share/yunohost/helpers
 
 #=================================================
 # APP "BUILD" (DEPLOYING SOURCES, VENV, COMPILING ETC)
