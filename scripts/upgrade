@@ -87,7 +87,7 @@ ynh_add_nginx_config
 
 ynh_add_systemd_config
 
-yunohost service add $app --description="A short description of the app" --log="/var/log/$app/$app.log"
+yunohost service add $app --description="Modern relational spreadsheet" --log="/var/log/$app/$app.log"
 
 ynh_use_logrotate --non-append
 

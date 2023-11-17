@@ -57,7 +57,7 @@ ynh_add_nginx_config
 # Create a dedicated systemd config
 ynh_add_systemd_config
 
-yunohost service add $app --description="Grist is the evolution of spreadsheets." --log="/var/log/$app/$app.log"
+yunohost service add $app --description="Modern relational spreadsheet" --log="/var/log/$app/$app.log"
 
 # Use logrotate to manage application logfile(s)
 ynh_use_logrotate
