@@ -39,7 +39,7 @@ ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-	ynh_script_progression --message="Upgrading source files..." --weight=1
+	ynh_script_progression --message="Upgrading source files..." --weight=20
 
 	# Download, check integrity, uncompress and patch the source from manifest.toml
 	ynh_setup_source --dest_dir="$install_dir"
