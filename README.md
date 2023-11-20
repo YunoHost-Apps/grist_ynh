@@ -28,7 +28,7 @@ Grist is a hybrid database/spreadsheet, meaning that:
 More about the features can be found here: <https://github.com/gristlabs/grist-core/#features>
 
 
-**Shipped version:** 1.1.7~ynh2
+**Shipped version:** 1.1.8~ynh1
 
 **Demo:** https://docs.getgrist.com
 

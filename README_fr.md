@@ -28,7 +28,7 @@ Grist est une solution hybridant la base de données et le tableur, ce qui signi
 Plus d'information sur les fonctionnalités sont disponibles ici : <https://github.com/gristlabs/grist-core/#features>
 
 
-**Version incluse :** 1.1.7~ynh2
+**Version incluse :** 1.1.8~ynh1
 
 **Démo :** https://docs.getgrist.com
 
