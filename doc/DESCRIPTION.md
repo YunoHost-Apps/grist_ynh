@@ -8,3 +8,7 @@ Grist is a hybrid database/spreadsheet, meaning that:
 - Columns can be filled by formula, spreadsheet-style, with automatic updates when referenced cells change.
 
 More about the features can be found here: <https://github.com/gristlabs/grist-core/#features>
+
+### Limitations
+
+- You cannot log out from Grist, you have to log out from Yunohost to do that;
