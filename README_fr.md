@@ -27,6 +27,10 @@ Grist est une solution hybridant la base de données et le tableur, ce qui signi
 
 Plus d'information sur les fonctionnalités sont disponibles ici : <https://github.com/gristlabs/grist-core/#features>
 
+### Limitations
+
+- Vous ne pouvez pas vous déconnecter depuis Grist, pour ce faire, vous devez vous déconnecter de Yunohost ;
+
 
 **Version incluse :** 1.1.8~ynh1
 
