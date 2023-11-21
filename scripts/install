@@ -38,7 +38,7 @@ pushd "$install_dir"
 popd
 
 pushd "$install_dir/sandbox/pyodide"
-	ynh_exec_warn_less ynh_exec_as $app make setup
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH make setup
 popd
 
 #=================================================
