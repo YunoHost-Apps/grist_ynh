@@ -22,7 +22,7 @@ ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
-ynh_script_progression --message="Setting up source files..." --weight=1
+ynh_script_progression --message="Setting up source files..." --weight=20
 
 # Download, check integrity, uncompress and patch the source from manifest.toml
 ynh_setup_source --dest_dir="$install_dir"
@@ -38,7 +38,7 @@ pushd "$install_dir"
 popd
 
 pushd "$install_dir/sandbox/pyodide"
-	ynh_exec_warn_less ynh_exec_as $app make setup
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH make setup
 popd
 
 #=================================================

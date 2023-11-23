@@ -11,6 +11,7 @@ ExecStart=__INSTALL_DIR__/sandbox/run.sh
 StandardOutput=journal
 StandardError=journal
 EnvironmentFile=__INSTALL_DIR__/default.env
+Environment="__YNH_NODE_LOAD_PATH__"
 
 # Sandboxing options to harden security
 # Depending on specificities of your service/app, you may need to tweak these
