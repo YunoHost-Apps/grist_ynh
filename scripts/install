@@ -72,9 +72,13 @@ ynh_app_setting_set --app="$app" --key=redis_db --value="$redis_db"
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
 ynh_add_config --template="default.env" --destination="$install_dir/default.env"
+ynh_add_config --template="custom.env" --destination="$data_dir/custom.env"
 
 chmod 400 "$install_dir/default.env"
 chown $app:$app "$install_dir/default.env"
+
+chmod 700 "$data_dir/custom.env"
+chown $app:$app "$data_dir/custom.env"
 
 #=================================================
 # GENERIC FINALIZATION

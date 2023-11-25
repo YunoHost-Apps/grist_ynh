@@ -11,10 +11,6 @@ name.fr = "Configuration principale"
 
 services = ["__APP__"]
 
-    ############################################################################
-    #### ABOUT SECTIONS
-    ############################################################################
-
     [main.customization]
 
     name.fr = "Personnalisation de votre instance Grist"
