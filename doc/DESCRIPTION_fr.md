@@ -12,3 +12,9 @@ Plus d'information sur les fonctionnalités sont disponibles ici : <https://gith
 ### Limitations
 
 - Vous ne pouvez pas vous déconnecter depuis Grist, pour ce faire, vous devez vous déconnecter de Yunohost ;
+
+### Personnaliser votre configuration
+
+Vous pouvez ajouter quelques configurations dans le fichier `/home/yunohost.app/grist/custom.env`. Référez-vous au [README de Grist](https://github.com/gristlabs/grist-core/#environment-variables) pour en savoir plus.
+
+:warn : Soyez sûr de ce que vous faîtes, cela peut casser votre instance.
