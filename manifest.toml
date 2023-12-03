@@ -12,7 +12,7 @@ version = "1.1.9~ynh1"
 maintainers = ["fflorent"]
 
 [upstream]
-license = "AGPL-3.0-only"
+license = "Apache-2.0"
 website = "https://getgrist.com"
 demo = "https://docs.getgrist.com"
 admindoc = "https://www.getgrist.com/product/self-managed/"
