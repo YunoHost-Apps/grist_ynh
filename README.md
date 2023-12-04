@@ -38,7 +38,7 @@ You can add some configuration in the `/home/yunohost.app/grist/custom.env` file
 :warning: Be sure of what you do, it may break your instance.
 
 
-**Shipped version:** 1.1.9~ynh1
+**Shipped version:** 1.1.9~ynh2
 
 **Demo:** https://docs.getgrist.com
 

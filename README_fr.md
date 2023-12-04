@@ -38,7 +38,7 @@ Vous pouvez ajouter quelques configurations dans le fichier `/home/yunohost.app/
 :warning: Soyez sûr de ce que vous faîtes, cela peut casser votre instance.
 
 
-**Version incluse :** 1.1.9~ynh1
+**Version incluse :** 1.1.9~ynh2
 
 **Démo :** https://docs.getgrist.com
 
