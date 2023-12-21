@@ -13,4 +13,3 @@ However be sure to have fresh backups if you plan to change data.
 You can add some configuration in the `__DATA_DIR__/custom.env` file. Refer to the [Grist README](https://github.com/gristlabs/grist-core/#environment-variables) to know more.
 
 :warning: Be sure of what you do, it may break your instance.
-
