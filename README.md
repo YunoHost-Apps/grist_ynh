@@ -27,16 +27,6 @@ Grist is a hybrid database/spreadsheet, meaning that:
 
 More about the features can be found here: <https://github.com/gristlabs/grist-core/#features>
 
-### Limitations
-
-- You cannot log out from Grist, you have to log out from Yunohost to do that;
-
-### Customize your configuration
-
-You can add some configuration in the `/home/yunohost.app/grist/custom.env` file. Refer to the [Grist README](https://github.com/gristlabs/grist-core/#environment-variables) to know more.
-
-:warning: Be sure of what you do, it may break your instance.
-
 
 **Shipped version:** 1.1.9~ynh2
 
