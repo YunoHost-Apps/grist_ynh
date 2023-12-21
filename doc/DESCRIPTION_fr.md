@@ -8,13 +8,3 @@ Grist est une solution hybridant la base de données et le tableur, ce qui signi
 - Que les colonnes peuvent être remplies à l'aide de formules, similaires à celles des tableurs, avec une mise à jour automatique quand les cellules référencées sont modifiées.
 
 Plus d'information sur les fonctionnalités sont disponibles ici : <https://github.com/gristlabs/grist-core/#features>
-
-### Limitations
-
-- Vous ne pouvez pas vous déconnecter depuis Grist, pour ce faire, vous devez vous déconnecter de Yunohost ;
-
-### Personnaliser votre configuration
-
-Vous pouvez ajouter quelques configurations dans le fichier `/home/yunohost.app/grist/custom.env`. Référez-vous au [README de Grist](https://github.com/gristlabs/grist-core/#environment-variables) pour en savoir plus.
-
-:warning: Soyez sûr de ce que vous faîtes, cela peut casser votre instance.
