@@ -1,5 +1,5 @@
 [Unit]
-Description=Grist is the evolution of spreadsheets.
+Description=Grist: Modern relational spreadsheet
 After=network.target
 
 [Service]

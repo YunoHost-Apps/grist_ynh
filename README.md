@@ -29,13 +29,7 @@ More about the features can be found here: <https://github.com/gristlabs/grist-c
 
 ### Limitations
 
-- You cannot log out from Grist, you have to log out from Yunohost to do that;
-
-### Customize your configuration
-
-You can add some configuration in the `/home/yunohost.app/grist/custom.env` file. Refer to the [Grist README](https://github.com/gristlabs/grist-core/#environment-variables) to know more.
-
-:warning: Be sure of what you do, it may break your instance.
+- You cannot log out from Grist, you have to log out from YunoHost to do that.
 
 
 **Shipped version:** 1.1.9~ynh2
