@@ -72,6 +72,9 @@ ram.runtime = "150M"
     login.url = "/auth/login"
     login.show_tile = false
     login.allowed = "all_users"
+    api.url = "/api"
+    api.show_tile = false
+    api.allowed = "visitors"
 
     [resources.ports]
     main.default = 8484
