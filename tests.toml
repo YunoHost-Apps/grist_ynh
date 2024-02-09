@@ -9,3 +9,5 @@ test_format = 1.0
     # ------------
 
     exclude = ["install.subdir", "install.nourl"]
+
+    test_upgrade_from.c98a6fb2.name = "Upgrade from 1.1.10"
