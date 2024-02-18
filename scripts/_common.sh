@@ -5,7 +5,6 @@
 #=================================================
 
 nodejs_version=18
-main_domain=$(cat /etc/yunohost/current_host)
 
 #=================================================
 # PERSONAL HELPERS
