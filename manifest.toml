@@ -59,7 +59,7 @@ ram.runtime = "150M"
         url = "https://github.com/gristlabs/grist-core/archive/refs/tags/v1.1.11.tar.gz"
         sha256 = "9e71715cda10fd38070c9d4679a3e9b8988669455556fa447cae17a0543c7198"
 
-        autoupdate.strategy = "latest_github_tag"
+        autoupdate.strategy = "latest_github_release"
 
     [resources.system_user]
 
