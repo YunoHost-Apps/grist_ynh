@@ -35,6 +35,8 @@ ynh_redis_remove_db "$redis_db"
 
 ynh_secure_remove --file="/var/log/$app"
 
+ynh_remove_nodejs
+
 #=================================================
 # END OF SCRIPT
 #=================================================
