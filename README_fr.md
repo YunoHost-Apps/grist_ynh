@@ -42,12 +42,12 @@ Plus d'information sur les fonctionnalités sont disponibles ici : <https://gith
 
 ## Documentations et ressources
 
-* Site officiel de l’app : <https://getgrist.com>
-* Documentation officielle utilisateur : <https://support.getgrist.com/>
-* Documentation officielle de l’admin : <https://www.getgrist.com/product/self-managed/>
-* Dépôt de code officiel de l’app : <https://github.com/gristlabs/grist-core/>
-* YunoHost Store: <https://apps.yunohost.org/app/grist>
-* Signaler un bug : <https://github.com/YunoHost-Apps/grist_ynh/issues>
+- Site officiel de l’app : <https://getgrist.com>
+- Documentation officielle utilisateur : <https://support.getgrist.com/>
+- Documentation officielle de l’admin : <https://www.getgrist.com/product/self-managed/>
+- Dépôt de code officiel de l’app : <https://github.com/gristlabs/grist-core/>
+- YunoHost Store : <https://apps.yunohost.org/app/grist>
+- Signaler un bug : <https://github.com/YunoHost-Apps/grist_ynh/issues>
 
 ## Informations pour les développeurs
 

@@ -42,12 +42,12 @@ More about the features can be found here: <https://github.com/gristlabs/grist-c
 
 ## Documentation and resources
 
-* Official app website: <https://getgrist.com>
-* Official user documentation: <https://support.getgrist.com/>
-* Official admin documentation: <https://www.getgrist.com/product/self-managed/>
-* Upstream app code repository: <https://github.com/gristlabs/grist-core/>
-* YunoHost Store: <https://apps.yunohost.org/app/grist>
-* Report a bug: <https://github.com/YunoHost-Apps/grist_ynh/issues>
+- Official app website: <https://getgrist.com>
+- Official user documentation: <https://support.getgrist.com/>
+- Official admin documentation: <https://www.getgrist.com/product/self-managed/>
+- Upstream app code repository: <https://github.com/gristlabs/grist-core/>
+- YunoHost Store: <https://apps.yunohost.org/app/grist>
+- Report a bug: <https://github.com/YunoHost-Apps/grist_ynh/issues>
 
 ## Developer info
 
