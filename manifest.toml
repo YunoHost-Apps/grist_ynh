@@ -80,7 +80,13 @@ ram.runtime = "150M"
     main.default = 8484
 
     [resources.apt]
-    packages = "python3.9, python3.9-venv"
+    packages_from_raw_bash = """
+    if [[ $YNH_DEBIAN_VERSION == "bullseye" ]]; then
+        echo "python3.9, python3.9-venv";
+    elif [[ $YNH_DEBIAN_VERSION == "bookworm" ]]; then
+        echo "python3.11, python3.11-venv";
+    fi
+    """
 
     extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
     extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
