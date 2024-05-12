@@ -80,7 +80,7 @@ ram.runtime = "150M"
     main.default = 8484
 
     [resources.apt]
-    package = "python3, python3-venv"
+    packages = "python3, python3-venv"
 
     extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
     extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
