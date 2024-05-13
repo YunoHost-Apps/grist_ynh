@@ -3,7 +3,7 @@
 请勿手动编辑。
 -->
 
-# YunoHost 的 Grist
+# YunoHost 上的 Grist
 
 [![集成程度](https://dash.yunohost.org/integration/grist.svg)](https://dash.yunohost.org/appci/app/grist) ![工作状态](https://ci-apps.yunohost.org/ci/badges/grist.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/grist.maintain.svg)
 
