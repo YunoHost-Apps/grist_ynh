@@ -21,7 +21,7 @@ code = "https://github.com/gristlabs/grist-core/"
 fund = "https://github.com/sponsors/gristlabs"
 
 [integration]
-yunohost = ">= 11.2"
+yunohost = ">= 11.2.12"
 architectures = "all"
 multi_instance = true
 
