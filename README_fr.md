@@ -32,7 +32,7 @@ Plus d'information sur les fonctionnalités sont disponibles ici : <https://gith
 - Vous ne pouvez pas vous déconnecter depuis Grist, pour ce faire, vous devez vous déconnecter de YunoHost.
 
 
-**Version incluse :** 1.1.14~ynh1
+**Version incluse :** 1.1.14~ynh2
 
 **Démo :** <https://docs.getgrist.com>
 
