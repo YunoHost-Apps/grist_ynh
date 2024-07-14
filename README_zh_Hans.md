@@ -5,7 +5,7 @@
 
 # YunoHost 上的 Grist
 
-[![集成程度](https://dash.yunohost.org/integration/grist.svg)](https://dash.yunohost.org/appci/app/grist) ![工作状态](https://ci-apps.yunohost.org/ci/badges/grist.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/grist.maintain.svg)
+[![集成程度](https://dash.yunohost.org/integration/grist.svg)](https://ci-apps.yunohost.org/ci/apps/grist/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/grist.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/grist.maintain.svg)
 
 [![使用 YunoHost 安装 Grist](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=grist)
 
@@ -32,7 +32,7 @@ More about the features can be found here: <https://github.com/gristlabs/grist-c
 - You cannot log out from Grist, you have to log out from YunoHost to do that.
 
 
-**分发版本：** 1.1.15~ynh1
+**分发版本：** 1.1.16~ynh1
 
 **演示：** <https://docs.getgrist.com>
 
