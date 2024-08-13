@@ -82,6 +82,7 @@ ynh_use_logrotate --non-append
 #=================================================
 ynh_script_progression --message="Updating a configuration file..." --weight=1
 
+admin_email=$(ynh_user_get_info --username=$admin --key=mail)
 ynh_add_config --template="default.env" --destination="$install_dir/default.env"
 
 chmod 400 "$install_dir/default.env"
