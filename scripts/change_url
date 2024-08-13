@@ -33,6 +33,8 @@ ynh_script_progression --message="Updating env configuration file..." --weight=1
 domain="$new_domain"
 path="$new_path"
 admin_email=$(ynh_user_get_info --username=$admin --key=mail)
+redis_db=$(ynh_app_setting_get --app=$app --key=redis_db)
+session_secret=$(ynh_app_setting_get --app=$app --key=session_secret)
 ynh_add_config --template="default.env" --destination="$install_dir/default.env"
 
 #=================================================
