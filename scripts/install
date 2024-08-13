@@ -9,6 +9,14 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
+
+#=================================================
+# INITIALIZE AND STORE SETTINGS
+#=================================================
+
+session_secret=$(ynh_string_random --length=32)
+ynh_app_setting_set --app=$app --key=session_secret --value=$session_secret
+
 #=================================================
 # APP "BUILD" (DEPLOYING SOURCES, VENV, COMPILING ETC)
 #=================================================
@@ -71,6 +79,7 @@ ynh_app_setting_set --app="$app" --key=redis_db --value="$redis_db"
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
+admin_email=$(ynh_user_get_info --username=$admin --key=mail)
 ynh_add_config --template="default.env" --destination="$install_dir/default.env"
 ynh_add_config --template="custom.env" --destination="$data_dir/custom.env"
 
