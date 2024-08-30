@@ -11,17 +11,15 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
-redis_db=$(ynh_app_setting_get --app=$app --key=redis_db)
-session_secret=$(ynh_app_setting_get --app=$app --key=session_secret)
-
-upgrade_type=$(ynh_check_app_version_changed)
+redis_db=$(ynh_app_setting_get --key=redis_db)
+session_secret=$(ynh_app_setting_get --key=session_secret)
 
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Stopping a systemd service..." --weight=1
+ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
+ynh_systemctl --service=$app --action="stop"
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
@@ -29,16 +27,16 @@ ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app
 
 if [ -z "$session_secret" ]; then
   session_secret=$(ynh_string_random --length=32)
-  ynh_app_setting_set --app=$app --key=session_secret --value=$session_secret
+  ynh_app_setting_set --key=session_secret --value=$session_secret
 fi
 
 #=================================================
 # UPGRADE DEPENDENCIES
 #=================================================
 
-ynh_script_progression --message="Upgrading dependencies..." --weight=1
+ynh_script_progression "Upgrading dependencies..."
 
-ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
+ynh_nodejs_install
 
 #=================================================
 # "REBUILD" THE APP (DEPLOY NEW SOURCES, RERUN NPM BUILD...)
@@ -46,66 +44,67 @@ ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
-if [ "$upgrade_type" == "UPGRADE_APP" ]
+# FIXME: this is still supported but the recommendation is now to *always* re-setup the app sources wether or not the upstream sources changed
+if ynh_app_upstream_version_changed
 then
-	ynh_script_progression --message="Upgrading source files..." --weight=20
+	ynh_script_progression "Upgrading source files..."
 
 	# Download, check integrity, uncompress and patch the source from manifest.toml
-	ynh_setup_source --dest_dir="$install_dir" --full_replace=1
+	ynh_setup_source --dest_dir="$install_dir" --full_replace
 fi
 
-chown -R $app:www-data "$install_dir"
-
-if [ "$upgrade_type" == "UPGRADE_APP" ]
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
+# FIXME: this is still supported but the recommendation is now to *always* re-setup the app sources wether or not the upstream sources changed
+if ynh_app_upstream_version_changed
 then
   pushd "$install_dir"
-    ynh_use_nodejs
-    ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install --pure-lockfile
-    ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install:python
-    ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH:$install_dir/node_modules/.bin yarn run build:prod
-    ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn cache clean
+
+    ynh_hide_warnings ynh_exec_as_app node_load_PATH yarn install --pure-lockfile
+    ynh_hide_warnings ynh_exec_as_app node_load_PATH yarn install:python
+    ynh_hide_warnings ynh_exec_as_app node_load_PATH:$install_dir/node_modules/.bin yarn run build:prod
+    ynh_hide_warnings ynh_exec_as_app node_load_PATH yarn cache clean
   popd
 
   pushd "$install_dir/sandbox/pyodide"
-    ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH make setup
+    ynh_hide_warnings ynh_exec_as_app node_load_PATH make setup
   popd
 fi
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
+ynh_script_progression "Upgrading system configurations related to $app..."
 
-ynh_add_nginx_config
+ynh_config_add_nginx
 
-ynh_add_systemd_config
+ynh_config_add_systemd
 
 yunohost service add $app --description="Modern relational spreadsheet" --log="/var/log/$app/$app.log"
 
-ynh_use_logrotate --non-append
+ynh_config_add_logrotate
 
 #=================================================
 # RECONFIGURE THE APP (UPDATE CONF, APPLY MIGRATIONS...)
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
-ynh_script_progression --message="Updating a configuration file..." --weight=1
+ynh_script_progression "Updating configuration..."
 
 admin_email=$(ynh_user_get_info --username=$admin --key=mail)
-ynh_add_config --template="default.env" --destination="$install_dir/default.env"
+ynh_config_add --template="default.env" --destination="$install_dir/default.env"
 
-chmod 400 "$install_dir/default.env"
-chown $app:$app "$install_dir/default.env"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 400 "$install_dir/default.env"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:$app "$install_dir/default.env"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting a systemd service..." --weight=1
+ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log"
+ynh_systemctl --service=$app --action="start"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of $app completed" --last
+ynh_script_progression "Upgrade of $app completed"
