@@ -33,42 +33,27 @@ fi
 #=================================================
 # UPGRADE DEPENDENCIES
 #=================================================
-
 ynh_script_progression "Upgrading dependencies..."
 
 ynh_nodejs_install
 
 #=================================================
-# "REBUILD" THE APP (DEPLOY NEW SOURCES, RERUN NPM BUILD...)
-#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
+ynh_script_progression "Upgrading source files..."
 
-# FIXME: this is still supported but the recommendation is now to *always* re-setup the app sources wether or not the upstream sources changed
-if ynh_app_upstream_version_changed
-then
-	ynh_script_progression "Upgrading source files..."
+ynh_setup_source --dest_dir="$install_dir" --full_replace
 
-	# Download, check integrity, uncompress and patch the source from manifest.toml
-	ynh_setup_source --dest_dir="$install_dir" --full_replace
-fi
+pushd "$install_dir"
+  ynh_hide_warnings ynh_exec_as_app yarn install --pure-lockfile
+  ynh_hide_warnings ynh_exec_as_app yarn install:python
+  ynh_hide_warnings ynh_exec_as_app $install_dir/node_modules/.bin yarn run build:prod
+  ynh_hide_warnings ynh_exec_as_app yarn cache clean
+popd
 
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
-# FIXME: this is still supported but the recommendation is now to *always* re-setup the app sources wether or not the upstream sources changed
-if ynh_app_upstream_version_changed
-then
-  pushd "$install_dir"
-
-    ynh_hide_warnings ynh_exec_as_app node_load_PATH yarn install --pure-lockfile
-    ynh_hide_warnings ynh_exec_as_app node_load_PATH yarn install:python
-    ynh_hide_warnings ynh_exec_as_app node_load_PATH:$install_dir/node_modules/.bin yarn run build:prod
-    ynh_hide_warnings ynh_exec_as_app node_load_PATH yarn cache clean
-  popd
-
-  pushd "$install_dir/sandbox/pyodide"
-    ynh_hide_warnings ynh_exec_as_app node_load_PATH make setup
-  popd
-fi
+pushd "$install_dir/sandbox/pyodide"
+  ynh_hide_warnings ynh_exec_as_app node_load_PATH make setup
+popd
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -92,9 +77,6 @@ ynh_script_progression "Updating configuration..."
 
 admin_email=$(ynh_user_get_info --username=$admin --key=mail)
 ynh_config_add --template="default.env" --destination="$install_dir/default.env"
-
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 400 "$install_dir/default.env"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:$app "$install_dir/default.env"
 
 #=================================================
 # START SYSTEMD SERVICE

@@ -28,8 +28,8 @@ pushd "$install_dir"
 
 	ynh_hide_warnings ynh_exec_as_app yarn install --pure-lockfile
 	ynh_hide_warnings ynh_exec_as_app yarn install:python
-	ynh_hide_warnings ynh_exec_as_app :$install_dir/node_modules/.bin yarn run build:prod
-	ynh_hide_warnings ynh_exec_as_app  yarn cache clean
+	ynh_hide_warnings ynh_exec_as_app $install_dir/node_modules/.bin yarn run build:prod
+	ynh_hide_warnings ynh_exec_as_app yarn cache clean
 popd
 
 pushd "$install_dir/sandbox/pyodide"
