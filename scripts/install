@@ -11,8 +11,6 @@ session_secret=$(ynh_string_random --length=32)
 ynh_app_setting_set --key=session_secret --value=$session_secret
 
 #=================================================
-# APP "BUILD" (DEPLOYING SOURCES, VENV, COMPILING ETC)
-#=================================================
 # INSTALL NODEJS
 #=================================================
 ynh_script_progression "Installing dependencies..."
@@ -22,23 +20,20 @@ ynh_nodejs_install
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-
 ynh_script_progression "Setting up source files..."
 
-# Download, check integrity, uncompress and patch the source from manifest.toml
 ynh_setup_source --dest_dir="$install_dir"
 
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
 pushd "$install_dir"
 
-	ynh_hide_warnings ynh_exec_as_app node_load_PATH yarn install --pure-lockfile
-	ynh_hide_warnings ynh_exec_as_app node_load_PATH yarn install:python
-	ynh_hide_warnings ynh_exec_as_app node_load_PATH:$install_dir/node_modules/.bin yarn run build:prod
-	ynh_hide_warnings ynh_exec_as_app node_load_PATH yarn cache clean
+	ynh_hide_warnings ynh_exec_as_app yarn install --pure-lockfile
+	ynh_hide_warnings ynh_exec_as_app yarn install:python
+	ynh_hide_warnings ynh_exec_as_app :$install_dir/node_modules/.bin yarn run build:prod
+	ynh_hide_warnings ynh_exec_as_app  yarn cache clean
 popd
 
 pushd "$install_dir/sandbox/pyodide"
-	ynh_hide_warnings ynh_exec_as_app node_load_PATH make setup
+	ynh_hide_warnings ynh_exec_as_app make setup
 popd
 
 #=================================================
@@ -46,15 +41,12 @@ popd
 #=================================================
 ynh_script_progression "Adding system configurations related to $app..."
 
-# Create a dedicated NGINX config using the conf/nginx.conf template
 ynh_config_add_nginx
 
-# Create a dedicated systemd config
 ynh_config_add_systemd
 
 yunohost service add $app --description="Modern relational spreadsheet" --log="/var/log/$app/$app.log"
 
-# Use logrotate to manage application logfile(s)
 ynh_config_add_logrotate
 
 #=================================================
@@ -75,18 +67,11 @@ admin_email=$(ynh_user_get_info --username=$admin --key=mail)
 ynh_config_add --template="default.env" --destination="$install_dir/default.env"
 ynh_config_add --template="custom.env" --destination="$data_dir/custom.env"
 
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 400 "$install_dir/default.env"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:$app "$install_dir/default.env"
-
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 700 "$data_dir/custom.env"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:$app "$data_dir/custom.env"
-
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-# Start a systemd service
 ynh_systemctl --service=$app --action="start"
 
 #=================================================
