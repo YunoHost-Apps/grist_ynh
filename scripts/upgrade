@@ -42,7 +42,7 @@ ynh_nodejs_install
 #=================================================
 ynh_script_progression "Upgrading source files..."
 
-ynh_setup_source --dest_dir="$install_dir" --full_replace
+ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="default.env"
 
 pushd "$install_dir"
   ynh_hide_warnings ynh_exec_as_app yarn install --pure-lockfile
@@ -52,7 +52,7 @@ pushd "$install_dir"
 popd
 
 pushd "$install_dir/sandbox/pyodide"
-  ynh_hide_warnings ynh_exec_as_app node_load_PATH make setup
+  ynh_hide_warnings ynh_exec_as_app make setup
 popd
 
 #=================================================
@@ -68,8 +68,6 @@ yunohost service add $app --description="Modern relational spreadsheet" --log="/
 
 ynh_config_add_logrotate
 
-#=================================================
-# RECONFIGURE THE APP (UPDATE CONF, APPLY MIGRATIONS...)
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================

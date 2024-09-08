@@ -9,6 +9,7 @@ source /usr/share/yunohost/helpers
 ynh_script_progression "Reinstalling dependencies..."
 
 ynh_nodejs_install
+
 #=================================================
 # RESTORE THE APP MAIN DIR
 #=================================================
@@ -29,8 +30,6 @@ chown -R $app:www-data "$data_dir"
 
 #=================================================
 # RESTORE SYSTEM CONFIGURATIONS
-#=================================================
-# RESTORE THE PHP-FPM CONFIGURATION
 #=================================================
 ynh_script_progression "Restoring system configurations related to $app..."
 
