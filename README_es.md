@@ -32,7 +32,7 @@ More about the features can be found here: <https://github.com/gristlabs/grist-c
 - You cannot log out from Grist, you have to log out from YunoHost to do that.
 
 
-**Versión actual:** 1.1.17~ynh2
+**Versión actual:** 1.2.0~ynh1
 
 **Demo:** <https://docs.getgrist.com>
 
@@ -51,7 +51,7 @@ More about the features can be found here: <https://github.com/gristlabs/grist-c
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/grist_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/grist_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
