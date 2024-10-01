@@ -1,18 +1,11 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
 redis_db=$(ynh_app_setting_get --key=redis_db)
 session_secret=$(ynh_app_setting_get --key=session_secret)
+admin_email=$(ynh_user_get_info --username=$admin --key=mail)
 
 #=================================================
 # STOP SYSTEMD SERVICE
@@ -25,10 +18,7 @@ ynh_systemctl --service=$app --action="stop"
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
 
-if [ -z "$session_secret" ]; then
-  session_secret=$(ynh_string_random --length=32)
-  ynh_app_setting_set --key=session_secret --value=$session_secret
-fi
+ynh_app_setting_set_default --key=session_secret --value="$(ynh_string_random --length=32)"
 
 #=================================================
 # UPGRADE DEPENDENCIES
@@ -43,6 +33,11 @@ ynh_nodejs_install
 ynh_script_progression "Upgrading source files..."
 
 ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="default.env"
+
+#=================================================
+# INSTALLING GRIST
+#=================================================
+ynh_script_progression "Installing $app..."
 
 pushd "$install_dir"
   ynh_hide_warnings ynh_exec_as_app yarn install --pure-lockfile
@@ -73,7 +68,6 @@ ynh_config_add_logrotate
 #=================================================
 ynh_script_progression "Updating configuration..."
 
-admin_email=$(ynh_user_get_info --username=$admin --key=mail)
 ynh_config_add --template="default.env" --destination="$install_dir/default.env"
 
 #=================================================

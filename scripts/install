@@ -7,6 +7,8 @@ source /usr/share/yunohost/helpers
 # INITIALIZE AND STORE SETTINGS
 #=================================================
 
+redis_db=$(ynh_redis_get_free_db)
+admin_email=$(ynh_user_get_info --username=$admin --key=mail)
 session_secret=$(ynh_string_random --length=32)
 ynh_app_setting_set --key=session_secret --value=$session_secret
 
@@ -52,7 +54,6 @@ ynh_config_add_logrotate
 # CONFIGURE REDIS
 #=================================================
 
-redis_db=$(ynh_redis_get_free_db)
 ynh_app_setting_set --key=redis_db --value="$redis_db"
 
 #=================================================
@@ -62,7 +63,6 @@ ynh_app_setting_set --key=redis_db --value="$redis_db"
 #=================================================
 ynh_script_progression "Adding $app's configuration..."
 
-admin_email=$(ynh_user_get_info --username=$admin --key=mail)
 ynh_config_add --template="default.env" --destination="$install_dir/default.env"
 ynh_config_add --template="custom.env" --destination="$data_dir/custom.env"
 
