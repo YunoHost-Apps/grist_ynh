@@ -51,7 +51,7 @@ More about the features can be found here: <https://github.com/gristlabs/grist-c
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/grist_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/grist_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
