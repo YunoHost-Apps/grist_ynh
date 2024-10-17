@@ -55,7 +55,6 @@ ram.runtime = "150M"
 [resources]
 
     [resources.sources]
-
     [resources.sources.main]
     url = "https://github.com/gristlabs/grist-core/archive/refs/tags/v1.2.0.tar.gz"
     sha256 = "76e4197bb1513336466c43dd9ab005405c28960068f58d5694cf9ec650763747"
