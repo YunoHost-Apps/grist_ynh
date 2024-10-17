@@ -26,12 +26,10 @@ ynh_script_progression "Setting up source files..."
 
 ynh_setup_source --dest_dir="$install_dir"
 
-chown -R $app:$app "$install_dir"
-
 pushd "$install_dir"
 	ynh_hide_warnings ynh_exec_as_app yarn install --pure-lockfile
 	ynh_hide_warnings ynh_exec_as_app yarn install:python
-	ynh_hide_warnings ynh_exec_as_app $install_dir/node_modules/.bin yarn run build:prod
+	ynh_hide_warnings $install_dir/node_modules/.bin yarn run build:prod
 	ynh_hide_warnings ynh_exec_as_app yarn cache clean
 popd
 
