@@ -12,7 +12,7 @@ StandardOutput=journal
 StandardError=journal
 EnvironmentFile=__INSTALL_DIR__/default.env
 EnvironmentFile=__DATA_DIR__/custom.env
-Environment="__YNH_NODE_LOAD_PATH__"
+Environment="PATH=__PATH_WITH_NODEJS__"
 
 # Sandboxing options to harden security
 # Depending on specificities of your service/app, you may need to tweak these
