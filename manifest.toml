@@ -21,7 +21,8 @@ code = "https://github.com/gristlabs/grist-core/"
 fund = "https://github.com/sponsors/gristlabs"
 
 [integration]
-yunohost = ">= 11.2.12"
+yunohost = ">= 11.2.30"
+helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
 
@@ -54,12 +55,11 @@ ram.runtime = "150M"
 [resources]
 
     [resources.sources]
+    [resources.sources.main]
+    url = "https://github.com/gristlabs/grist-core/archive/refs/tags/v1.2.0.tar.gz"
+    sha256 = "76e4197bb1513336466c43dd9ab005405c28960068f58d5694cf9ec650763747"
 
-        [resources.sources.main]
-        url = "https://github.com/gristlabs/grist-core/archive/refs/tags/v1.2.0.tar.gz"
-        sha256 = "76e4197bb1513336466c43dd9ab005405c28960068f58d5694cf9ec650763747"
-
-        autoupdate.strategy = "latest_github_release"
+    autoupdate.strategy = "latest_github_release"
 
     [resources.system_user]
 

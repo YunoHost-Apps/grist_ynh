@@ -1,111 +1,84 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
-redis_db=$(ynh_app_setting_get --app=$app --key=redis_db)
-session_secret=$(ynh_app_setting_get --app=$app --key=session_secret)
-
-upgrade_type=$(ynh_check_app_version_changed)
+redis_db=$(ynh_app_setting_get --key=redis_db)
+session_secret=$(ynh_app_setting_get --key=session_secret)
+admin_email=$(ynh_user_get_info --username=$admin --key=mail)
 
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Stopping a systemd service..." --weight=1
+ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
+ynh_systemctl --service=$app --action="stop"
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
 
-if [ -z "$session_secret" ]; then
-  session_secret=$(ynh_string_random --length=32)
-  ynh_app_setting_set --app=$app --key=session_secret --value=$session_secret
-fi
+ynh_app_setting_set_default --key=session_secret --value="$(ynh_string_random --length=32)"
 
 #=================================================
 # UPGRADE DEPENDENCIES
 #=================================================
+ynh_script_progression "Upgrading dependencies..."
 
-ynh_script_progression --message="Upgrading dependencies..." --weight=1
+ynh_nodejs_install
 
-ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
-
-#=================================================
-# "REBUILD" THE APP (DEPLOY NEW SOURCES, RERUN NPM BUILD...)
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
+ynh_script_progression "Upgrading source files..."
 
-if [ "$upgrade_type" == "UPGRADE_APP" ]
-then
-	ynh_script_progression --message="Upgrading source files..." --weight=20
+ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="default.env"
 
-	# Download, check integrity, uncompress and patch the source from manifest.toml
-	ynh_setup_source --dest_dir="$install_dir" --full_replace=1
-fi
+#=================================================
+# INSTALLING GRIST
+#=================================================
+ynh_script_progression "Installing $app..."
 
-chown -R $app:www-data "$install_dir"
+pushd "$install_dir"
+  ynh_hide_warnings ynh_exec_as_app yarn install --pure-lockfile
+  ynh_hide_warnings ynh_exec_as_app yarn install:python
+  ynh_hide_warnings ynh_exec_as_app yarn run build:prod
+  ynh_hide_warnings ynh_exec_as_app yarn cache clean
+popd
 
-if [ "$upgrade_type" == "UPGRADE_APP" ]
-then
-  pushd "$install_dir"
-    ynh_use_nodejs
-    ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install --pure-lockfile
-    ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install:python
-    ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH:$install_dir/node_modules/.bin yarn run build:prod
-    ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn cache clean
-  popd
-
-  pushd "$install_dir/sandbox/pyodide"
-    ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH make setup
-  popd
-fi
+pushd "$install_dir/sandbox/pyodide"
+  ynh_hide_warnings ynh_exec_as_app make setup
+popd
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
+ynh_script_progression "Upgrading system configurations related to $app..."
 
-ynh_add_nginx_config
+ynh_config_add_nginx
 
-ynh_add_systemd_config
+ynh_config_add_systemd
 
 yunohost service add $app --description="Modern relational spreadsheet" --log="/var/log/$app/$app.log"
 
-ynh_use_logrotate --non-append
+ynh_config_add_logrotate
 
-#=================================================
-# RECONFIGURE THE APP (UPDATE CONF, APPLY MIGRATIONS...)
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
-ynh_script_progression --message="Updating a configuration file..." --weight=1
+ynh_script_progression "Updating configuration..."
 
-admin_email=$(ynh_user_get_info --username=$admin --key=mail)
-ynh_add_config --template="default.env" --destination="$install_dir/default.env"
-
-chmod 400 "$install_dir/default.env"
-chown $app:$app "$install_dir/default.env"
+ynh_config_add --template="default.env" --destination="$install_dir/default.env"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting a systemd service..." --weight=1
+ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log"
+ynh_systemctl --service=$app --action="start"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of $app completed" --last
+ynh_script_progression "Upgrade of $app completed"
