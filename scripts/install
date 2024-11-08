@@ -10,6 +10,7 @@ source /usr/share/yunohost/helpers
 redis_db=$(ynh_redis_get_free_db)
 admin_email=$(ynh_user_get_info --username=$admin --key=mail)
 session_secret=$(ynh_string_random --length=32)
+email_header=$(get_email_header)
 ynh_app_setting_set --key=session_secret --value=$session_secret
 
 #=================================================

@@ -25,6 +25,7 @@ ynh_script_progression "Updating env configuration file..."
 admin_email=$(ynh_user_get_info --username=$admin --key=mail)
 redis_db=$(ynh_app_setting_get --key=redis_db)
 session_secret=$(ynh_app_setting_get --key=session_secret)
+email_header=$(get_email_header)
 ynh_config_add --template="default.env" --destination="$install_dir/default.env"
 
 #=================================================
