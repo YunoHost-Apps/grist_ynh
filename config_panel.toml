@@ -41,3 +41,12 @@ services = ["__APP__"]
         help.fr = "Spécifiez l'URL pointant vers le manifeste des Widgets. Par défaut https://github.com/gristlabs/grist-widget/releases/download/latest/manifest.json est utilisé"
         help.en = "Specify the url pointing to a widget manifest, by default https://github.com/gristlabs/grist-widget/releases/download/latest/manifest.json is used"
         bind = "GRIST_WIDGET_LIST_URL:/var/www/__APP__/default.env"
+
+        [main.customization.history_size]
+        ask.en = "Documents history size (⚠️ in bytes)"
+        ask.fr = "Taille de l'historique des documents (⚠️ en octet)"
+        type   = "number"
+
+        help.en = "Maximum size allowed in ActionHistory before pruning. Defaults to 10Mo. ⚠️ A too low value may make the \"Work on a copy\" feature malfunction"
+        help.fr = "Nombre maximal de lignes autorisées dans ActionHistory avant l'élagage. La valeur par défaut est de 10Mo. ⚠️ Une valeur trop basse peut entraîner un dysfonctionnement de la fonction « Travailler sur une copie »."
+        bind    = "GRIST_ACTION_HISTORY_MAX_BYTES:/var/www/__APP__/default.env"
