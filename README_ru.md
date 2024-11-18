@@ -32,7 +32,7 @@ More about the features can be found here: <https://github.com/gristlabs/grist-c
 - You cannot log out from Grist, you have to log out from YunoHost to do that.
 
 
-**Поставляемая версия:** 1.2.1~ynh2
+**Поставляемая версия:** 1.2.1~ynh3
 
 **Демо-версия:** <https://docs.getgrist.com>
 
