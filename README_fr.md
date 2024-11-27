@@ -5,7 +5,9 @@ Il NE doit PAS être modifié à la main.
 
 # Grist pour YunoHost
 
-[![Niveau d’intégration](https://dash.yunohost.org/integration/grist.svg)](https://ci-apps.yunohost.org/ci/apps/grist/) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/grist.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/grist.maintain.svg)
+[![Niveau d’intégration](https://apps.yunohost.org/badge/integration/grist)](https://ci-apps.yunohost.org/ci/apps/grist/)
+![Statut du fonctionnement](https://apps.yunohost.org/badge/state/grist)
+![Statut de maintenance](https://apps.yunohost.org/badge/maintained/grist)
 
 [![Installer Grist avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=grist)
 
@@ -32,7 +34,7 @@ Plus d'information sur les fonctionnalités sont disponibles ici : <https://gith
 - Vous ne pouvez pas vous déconnecter depuis Grist, pour ce faire, vous devez vous déconnecter de YunoHost.
 
 
-**Version incluse :** 1.2.1~ynh2
+**Version incluse :** 1.3.0~ynh1
 
 **Démo :** <https://docs.getgrist.com>
 
