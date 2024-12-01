@@ -5,7 +5,9 @@
 
 # Grist для YunoHost
 
-[![Уровень интеграции](https://dash.yunohost.org/integration/grist.svg)](https://ci-apps.yunohost.org/ci/apps/grist/) ![Состояние работы](https://ci-apps.yunohost.org/ci/badges/grist.status.svg) ![Состояние сопровождения](https://ci-apps.yunohost.org/ci/badges/grist.maintain.svg)
+[![Уровень интеграции](https://apps.yunohost.org/badge/integration/grist)](https://ci-apps.yunohost.org/ci/apps/grist/)
+![Состояние работы](https://apps.yunohost.org/badge/state/grist)
+![Состояние сопровождения](https://apps.yunohost.org/badge/maintained/grist)
 
 [![Установите Grist с YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=grist)
 
@@ -32,7 +34,7 @@ More about the features can be found here: <https://github.com/gristlabs/grist-c
 - You cannot log out from Grist, you have to log out from YunoHost to do that.
 
 
-**Поставляемая версия:** 1.2.1~ynh2
+**Поставляемая версия:** 1.3.0~ynh1
 
 **Демо-версия:** <https://docs.getgrist.com>
 

@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # Grist YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/grist.svg)](https://ci-apps.yunohost.org/ci/apps/grist/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/grist.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/grist.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/grist)](https://ci-apps.yunohost.org/ci/apps/grist/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/grist)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/grist)
 
 [![Instalatu Grist YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=grist)
 
@@ -32,7 +34,7 @@ More about the features can be found here: <https://github.com/gristlabs/grist-c
 - You cannot log out from Grist, you have to log out from YunoHost to do that.
 
 
-**Paketatutako bertsioa:** 1.2.1~ynh2
+**Paketatutako bertsioa:** 1.3.0~ynh1
 
 **Demoa:** <https://docs.getgrist.com>
 

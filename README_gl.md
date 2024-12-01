@@ -5,7 +5,9 @@ NON debe editarse manualmente.
 
 # Grist para YunoHost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/grist.svg)](https://ci-apps.yunohost.org/ci/apps/grist/) ![Estado de funcionamento](https://ci-apps.yunohost.org/ci/badges/grist.status.svg) ![Estado de mantemento](https://ci-apps.yunohost.org/ci/badges/grist.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/grist)](https://ci-apps.yunohost.org/ci/apps/grist/)
+![Estado de funcionamento](https://apps.yunohost.org/badge/state/grist)
+![Estado de mantemento](https://apps.yunohost.org/badge/maintained/grist)
 
 [![Instalar Grist con YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=grist)
 
@@ -32,7 +34,7 @@ More about the features can be found here: <https://github.com/gristlabs/grist-c
 - You cannot log out from Grist, you have to log out from YunoHost to do that.
 
 
-**Versión proporcionada:** 1.2.1~ynh2
+**Versión proporcionada:** 1.3.0~ynh1
 
 **Demo:** <https://docs.getgrist.com>
 
