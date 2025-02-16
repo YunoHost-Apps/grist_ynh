@@ -15,3 +15,7 @@ get_email_header() {
     echo "ynh_user_email"
   fi
 }
+
+get_topest_domain() {
+  yunohost --json domain info "$domain" | jq -r '.topest_parent // "'$domain'"'
+}
