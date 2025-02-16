@@ -10,6 +10,12 @@ ynh_script_progression "Stopping $app's systemd service..."
 
 ynh_systemctl --service=$app --action="stop"
 
+admin_email=$(ynh_user_get_info --username=$admin --key=mail)
+redis_db=$(ynh_app_setting_get --key=redis_db)
+session_secret=$(ynh_app_setting_get --key=session_secret)
+email_header=$(get_email_header)
+topest_domain=$(get_topest_domain)
+
 #=================================================
 # MODIFY URL IN NGINX CONF
 #=================================================
@@ -22,11 +28,6 @@ ynh_config_change_url_nginx
 #=================================================
 ynh_script_progression "Updating env configuration file..."
 
-admin_email=$(ynh_user_get_info --username=$admin --key=mail)
-redis_db=$(ynh_app_setting_get --key=redis_db)
-session_secret=$(ynh_app_setting_get --key=session_secret)
-email_header=$(get_email_header)
-topest_domain=$(get_topest_domain)
 ynh_config_add --template="default.env" --destination="$install_dir/default.env"
 
 #=================================================
