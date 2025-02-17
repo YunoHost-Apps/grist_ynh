@@ -5,8 +5,6 @@
 #=================================================
 
 nodejs_version=18
-main_domain=$(cat /etc/yunohost/current_host)
-app_home_url_base64=$(echo -n "https://$domain" | base64)
 
 get_email_header() {
   local yunohost_version=$(yunohost --version --json | jq -r ".yunohost.version")
@@ -16,4 +14,8 @@ get_email_header() {
   else
     echo "ynh_user_email"
   fi
+}
+
+get_topest_domain() {
+  yunohost --json domain info "$domain" | jq -r '.topest_parent // "'$domain'"'
 }
