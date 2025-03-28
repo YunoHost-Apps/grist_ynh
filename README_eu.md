@@ -34,7 +34,7 @@ More about the features can be found here: <https://github.com/gristlabs/grist-c
 - You cannot log out from Grist, you have to log out from YunoHost to do that.
 
 
-**Paketatutako bertsioa:** 1.4.2~ynh1
+**Paketatutako bertsioa:** 1.5.0~ynh1
 
 **Demoa:** <https://docs.getgrist.com>
 
@@ -55,7 +55,7 @@ More about the features can be found here: <https://github.com/gristlabs/grist-c
 
 Bidali `pull request`a [`testing` abarrera](https://github.com/YunoHost-Apps/grist_ynh/tree/testing).
 
-`testing` abarra probatzeko, ondorengoa egin:
+`testing` abarra probatzeko, honakoa egin:
 
 ```bash
 sudo yunohost app install https://github.com/YunoHost-Apps/grist_ynh/tree/testing --debug
