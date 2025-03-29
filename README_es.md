@@ -3,7 +3,7 @@ Este archivo README esta generado automaticamente<https://github.com/YunoHost/ap
 No se debe editar a mano.
 -->
 
-# Grist para Yunohost
+# Grist para YunoHost
 
 [![Nivel de integración](https://apps.yunohost.org/badge/integration/grist)](https://ci-apps.yunohost.org/ci/apps/grist/)
 ![Estado funcional](https://apps.yunohost.org/badge/state/grist)
@@ -34,7 +34,7 @@ More about the features can be found here: <https://github.com/gristlabs/grist-c
 - You cannot log out from Grist, you have to log out from YunoHost to do that.
 
 
-**Versión actual:** 1.4.2~ynh1
+**Versión actual:** 1.5.0~ynh2
 
 **Demo:** <https://docs.getgrist.com>
 
