@@ -3,8 +3,6 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
-redis_db=$(ynh_app_setting_get --key=redis_db)
-session_secret=$(ynh_app_setting_get --key=session_secret)
 admin_email=$(ynh_user_get_info --username=$admin --key=mail)
 email_header=$(get_email_header)
 topest_domain=$(get_topest_domain)
