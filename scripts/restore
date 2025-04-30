@@ -34,6 +34,9 @@ ynh_script_progression --message="Restore redis and regenerate config..."
 
 # Configure redis
 redis_db=$(ynh_redis_get_free_db)
+admin_email=$(ynh_user_get_info --username=$admin --key=mail)
+email_header=$(get_email_header)
+topest_domain=$(get_topest_domain)
 ynh_app_setting_set --key=redis_db --value="$redis_db"
 
 ynh_config_add --template="default.env" --destination="$install_dir/default.env"
