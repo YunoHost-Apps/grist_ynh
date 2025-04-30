@@ -27,6 +27,20 @@ ynh_script_progression "Restoring the data directory..."
 ynh_restore "$data_dir"
 
 #=================================================
+# RESTORE REDIS AND REGENERATE CONFIG
+#=================================================
+
+ynh_script_progression --message="Restore redis and regenerate config..."
+
+# Configure redis
+redis_db=$(ynh_redis_get_free_db)
+ynh_app_setting_set --key=redis_db --value="$redis_db"
+
+ynh_config_add --template="default.env" --destination="$install_dir/default.env"
+chmod 400 "$install_dir/default.env"
+chown "$app:$app" "$install_dir/default.env"
+
+#=================================================
 # RESTORE SYSTEM CONFIGURATIONS
 #=================================================
 ynh_script_progression "Restoring system configurations related to $app..."
