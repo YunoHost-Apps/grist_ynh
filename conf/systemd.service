@@ -6,13 +6,13 @@ After=network.target
 Type=simple
 User=__APP__
 Group=__APP__
+EnvironmentFile=__INSTALL_DIR__/default.env
+EnvironmentFile=__DATA_DIR__/custom.env
+Environment="PATH=__PATH_WITH_NODEJS__"
 WorkingDirectory=__INSTALL_DIR__/
 ExecStart=__INSTALL_DIR__/sandbox/run.sh
 StandardOutput=journal
 StandardError=journal
-EnvironmentFile=__INSTALL_DIR__/default.env
-EnvironmentFile=__DATA_DIR__/custom.env
-Environment="PATH=__PATH_WITH_NODEJS__"
 
 # Sandboxing options to harden security
 # Depending on specificities of your service/app, you may need to tweak these
