@@ -3,10 +3,6 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
-admin_email=$(ynh_user_get_info --username=$admin --key=mail)
-email_header=$(get_email_header)
-topest_domain=$(get_topest_domain)
-
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
@@ -17,6 +13,10 @@ ynh_systemctl --service=$app --action="stop"
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
+
+admin_email=$(ynh_user_get_info --username=$admin --key=mail)
+email_header=$(get_email_header)
+topest_domain=$(get_topest_domain)
 
 ynh_app_setting_set_default --key=session_secret --value="$(ynh_string_random --length=32)"
 
