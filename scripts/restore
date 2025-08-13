@@ -38,6 +38,8 @@ yunohost service add $app --description="Modern relational spreadsheet" --log="/
 
 ynh_restore "/etc/logrotate.d/$app"
 
+ynh_config_add --template="default.env" --destination="$install_dir/default.env"
+
 #=================================================
 # RELOAD NGINX AND PHP-FPM OR THE APP SERVICE
 #=================================================
