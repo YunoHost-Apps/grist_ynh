@@ -7,7 +7,6 @@ name = "Grist"
 description.en = "Modern relational spreadsheet"
 description.fr = "Feuille de calcul relationnelle moderne"
 
-
 version = "1.7.3~ynh1"
 
 maintainers = ["fflorent"]
@@ -22,7 +21,7 @@ code = "https://github.com/gristlabs/grist-core/"
 fund = "https://github.com/sponsors/gristlabs"
 
 [integration]
-yunohost = ">= 12.0.9"
+yunohost = ">= 12.1.17"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
@@ -85,3 +84,6 @@ ram.runtime = "150M"
     extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
     extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
     extras.yarn.packages = ["yarn"]
+
+    [resources.nodejs]
+    version = "22"
