@@ -19,7 +19,7 @@ ynh_app_setting_set --key=session_secret --value=$session_secret
 #=================================================
 ynh_script_progression "Installing dependencies..."
 
-ynh_nodejs_install
+ynh_hide_warnings corepack enable && corepack prepare yarn@1.22.22 --activate
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -67,8 +67,6 @@ ynh_config_add_logrotate
 ynh_app_setting_set --key=redis_db --value="$redis_db"
 
 #=================================================
-# APP INITIAL CONFIGURATION
-#=================================================
 # ADD A CONFIGURATION
 #=================================================
 ynh_script_progression "Adding $app's configuration..."
@@ -86,4 +84,5 @@ ynh_systemctl --service=$app --action="start"
 #=================================================
 # END OF SCRIPT
 #=================================================
+
 ynh_script_progression "Installation of $app completed"

@@ -4,8 +4,6 @@
 # COMMON VARIABLES AND CUSTOM HELPERS
 #=================================================
 
-nodejs_version=22
-
 get_email_header() {
   local yunohost_version=$(yunohost --version --json | jq -r ".yunohost.version")
   if dpkg --compare-versions $yunohost_version lt 12; # if ynh_version < 12
