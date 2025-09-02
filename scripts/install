@@ -19,7 +19,7 @@ ynh_app_setting_set --key=session_secret --value=$session_secret
 #=================================================
 ynh_script_progression "Installing dependencies..."
 
-ynh_nodejs_install
+#REMOVEME? ynh_nodejs_install
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
