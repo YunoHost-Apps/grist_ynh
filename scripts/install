@@ -19,7 +19,7 @@ ynh_app_setting_set --key=session_secret --value=$session_secret
 #=================================================
 ynh_script_progression "Installing dependencies..."
 
-ynh_hide_warnings corepack enable && corepack prepare yarn@1.22.22 --activate
+ynh_hide_warnings corepack enable && corepack prepare yarn@latest --activate
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
