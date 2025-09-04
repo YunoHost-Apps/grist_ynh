@@ -1,0 +1,18 @@
+diff --git a/sandbox/pyodide/setup.sh b/sandbox/pyodide/setup.sh
+index 7fe46563..7991b920 100755
+--- a/sandbox/pyodide/setup.sh
++++ b/sandbox/pyodide/setup.sh
+@@ -8,8 +8,9 @@ echo "## Get pyodide node package"
+ 
+ if [[ ! -e _build/worker ]]; then
+   mkdir -p _build/worker
+-  cd _build/worker
+-  yarn init --yes
+-  yarn add pyodide@0.23.4
+-  cd ../..
++  pushd _build/worker
++    yarn init --yes
++    touch yarn.lock
++    yarn add pyodide@0.23.4
++  popd
+ fi
