@@ -25,7 +25,7 @@ ynh_app_setting_set_default --key=session_secret --value="$(ynh_string_random --
 #=================================================
 ynh_script_progression "Upgrading dependencies..."
 
-ynh_hide_warnings corepack enable && corepack prepare yarn@1.22.22 --activate
+ynh_hide_warnings corepack enable && corepack prepare yarn@latest --activate
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE

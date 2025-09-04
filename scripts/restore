@@ -8,7 +8,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Reinstalling dependencies..."
 
-ynh_hide_warnings corepack enable && corepack prepare yarn@1.22.22 --activate
+ynh_hide_warnings corepack enable && corepack prepare yarn@latest --activate
 
 #=================================================
 # RESTORE THE APP MAIN DIR
