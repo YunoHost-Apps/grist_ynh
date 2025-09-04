@@ -30,7 +30,7 @@ ynh_restore "$data_dir"
 # RESTORE REDIS AND REGENERATE CONFIG
 #=================================================
 
-ynh_script_progression --message="Restore redis and regenerate config..."
+ynh_script_progression "Restore redis and regenerate config..."
 
 # Configure redis
 redis_db=$(ynh_redis_get_free_db)

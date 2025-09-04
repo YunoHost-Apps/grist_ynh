@@ -74,6 +74,7 @@ ynh_app_setting_set --key=redis_db --value="$redis_db"
 ynh_script_progression "Adding $app's configuration..."
 
 ynh_config_add --template="default.env" --destination="$install_dir/default.env"
+ynh_config_add --template="config.env" --destination="$install_dir/config.env"
 ynh_config_add --template="custom.env" --destination="$data_dir/custom.env"
 
 #=================================================
