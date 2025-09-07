@@ -8,7 +8,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Reinstalling dependencies..."
 
-ynh_nodejs_install
+ynh_hide_warnings corepack enable && corepack prepare yarn@latest --activate
 
 #=================================================
 # RESTORE THE APP MAIN DIR
@@ -16,8 +16,6 @@ ynh_nodejs_install
 ynh_script_progression "Restoring the app main directory..."
 
 ynh_restore "$install_dir"
-
-chown -R $app:www-data "$install_dir"
 
 #=================================================
 # RESTORE THE DATA DIRECTORY
@@ -29,7 +27,6 @@ ynh_restore "$data_dir"
 #=================================================
 # RESTORE REDIS AND REGENERATE CONFIG
 #=================================================
-
 ynh_script_progression "Restore redis and regenerate config..."
 
 # Configure redis
@@ -40,8 +37,6 @@ topest_domain=$(get_topest_domain)
 ynh_app_setting_set --key=redis_db --value="$redis_db"
 
 ynh_config_add --template="default.env" --destination="$install_dir/default.env"
-chmod 400 "$install_dir/default.env"
-chown "$app:$app" "$install_dir/default.env"
 
 #=================================================
 # RESTORE SYSTEM CONFIGURATIONS

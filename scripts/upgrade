@@ -43,7 +43,7 @@ fi
 #=================================================
 ynh_script_progression "Upgrading dependencies..."
 
-ynh_nodejs_install
+ynh_hide_warnings corepack enable && corepack prepare yarn@latest --activate
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
