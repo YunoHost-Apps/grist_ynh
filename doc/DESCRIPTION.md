@@ -12,3 +12,4 @@ More about the features can be found here: <https://github.com/gristlabs/grist-c
 ### Limitations
 
 - You cannot log out from Grist, you have to log out from YunoHost to do that.
+- This package runs grist-core and **does not support** enterprise edition features.
