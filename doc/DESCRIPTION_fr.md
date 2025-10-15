@@ -12,3 +12,4 @@ Plus d'information sur les fonctionnalités sont disponibles ici : <https://gith
 ### Limitations
 
 - Vous ne pouvez pas vous déconnecter depuis Grist, pour ce faire, vous devez vous déconnecter de YunoHost.
+- Ce paquet fait fonctionner grist-core et **ne supporte pas** les fonctionnalités de l'édition Entreprise (*enterprise edition*).
