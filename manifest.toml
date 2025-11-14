@@ -58,8 +58,8 @@ ram.runtime = "150M"
 
     [resources.sources]
     [resources.sources.main]
-    url = "https://github.com/gristlabs/grist-core/archive/refs/tags/v1.7.3.tar.gz"
-    sha256 = "af6beeb4ce095520f15ec4b73961cfba53384a37006c82d1f1c271274082f8e1"
+    url = "https://github.com/gristlabs/grist-core/archive/refs/tags/v1.7.7.tar.gz"
+    sha256 = "62bd66b11a41e9802e78ceac2d5e7d916b852ad0b26739867d86b89bb0ff3cbf"
 
     autoupdate.strategy = "latest_github_release"
 
@@ -82,7 +82,7 @@ ram.runtime = "150M"
     main.default = 8484
 
     [resources.apt]
-    packages = "python3, python3-venv, redis-server"
+    packages = "python3, python3-venv, redis-server, make"
 
     [resources.nodejs]
     version = "22"

@@ -65,8 +65,6 @@ pushd "$install_dir"
   ynh_script_progression "Building the app (may take a while)"
 	ynh_hide_warnings ynh_exec_as_app yarn run build:prod
   ynh_script_progression "Fetching the dependencies for the runtime"
-  ynh_safe_rm ./node_modules/
-  ynh_hide_warnings ynh_exec_as_app yarn add --network-timeout 600000 node-gyp node-pre-gyp node-gyp-build node-gyp-build-optional-packages
   ynh_hide_warnings ynh_exec_as_app yarn install --prod --frozen-lockfile --network-timeout 600000
 	ynh_hide_warnings ynh_exec_as_app yarn cache clean
 popd

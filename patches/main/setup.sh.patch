@@ -1,5 +1,5 @@
 diff --git a/sandbox/pyodide/setup.sh b/sandbox/pyodide/setup.sh
-index 7fe46563..7991b920 100755
+index 7c7d55e5..f0cc7945 100755
 --- a/sandbox/pyodide/setup.sh
 +++ b/sandbox/pyodide/setup.sh
 @@ -8,8 +8,10 @@ echo "## Get pyodide node package"
