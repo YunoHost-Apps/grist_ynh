@@ -20,6 +20,24 @@ ynh_systemctl --service=$app --action="stop"
 
 ynh_app_setting_set_default --key=session_secret --value="$(ynh_string_random --length=32)"
 
+declare -A legacy_lang_map=([fr]="fr-FR" [en]="en-US")
+
+echo "language=$language"
+
+if [ -n "${legacy_lang_map[$language]:-}" ]; then
+  language="${legacy_lang_map[$language]}"
+  ynh_app_setting_set --key=language --value="$language"
+fi
+
+if ynh_app_upgrading_from_version_before 1.7.3~ynh1; then
+  (
+    source $install_dir/default.env
+    ynh_config_add --template="config.env" --destination="$install_dir/config.env"
+    ynh_write_var_in_file --file="$install_dir/config.env" --key=GRIST_WIDGET_LIST_URL --value=$GRIST_WIDGET_LIST_URL
+    ynh_write_var_in_file --file="$install_dir/config.env" --key=GRIST_ACTION_HISTORY_MAX_BYTES --value=$GRIST_ACTION_HISTORY_MAX_BYTES
+  )
+fi
+
 #=================================================
 # UPGRADE DEPENDENCIES
 #=================================================
@@ -32,7 +50,7 @@ ynh_hide_warnings corepack enable && corepack prepare yarn@latest --activate
 #=================================================
 ynh_script_progression "Upgrading source files..."
 
-ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="default.env"
+ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="config.env"
 
 #=================================================
 # INSTALLING GRIST
@@ -74,6 +92,7 @@ ynh_config_add_logrotate
 #=================================================
 ynh_script_progression "Updating configuration..."
 
+ynh_config_add --template="config.env" --destination="$install_dir/config.env"
 ynh_config_add --template="default.env" --destination="$install_dir/default.env"
 
 #=================================================
