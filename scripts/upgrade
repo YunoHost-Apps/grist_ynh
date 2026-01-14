@@ -2,6 +2,7 @@
 
 source _common.sh
 source /usr/share/yunohost/helpers
+source ynh_docker_image_extract
 
 admin_email=$(ynh_user_get_info --username=$admin --key=mail)
 email_header=$(get_email_header)
@@ -51,10 +52,17 @@ pushd "$install_dir"
 	ynh_hide_warnings ynh_exec_as_app yarn cache clean
 popd
 
-pushd "$install_dir/sandbox/pyodide"
-  ynh_script_progression "Installing the sandbox for formulas"
-	ynh_hide_warnings ynh_exec_as_app make setup
-popd
+if [ "$YNH_ARCH" == "amd64" ]; then
+  _download_dex_from_docker
+  sandbox_flavor=gvisor
+else
+  pushd "$install_dir/sandbox/pyodide"
+    ynh_script_progression "Installing the sandbox for formulas"
+    ynh_hide_warnings ynh_exec_as_app make setup
+  popd
+  sandbox_flavor=pyodide
+fi
+ynh_app_setting_set --key=sandbox_flavor --value="$sandbox_flavor"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
