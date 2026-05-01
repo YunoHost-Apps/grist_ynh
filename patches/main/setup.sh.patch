@@ -7,6 +7,6 @@ index 7c7d55e5..f0cc7945 100755
    yarn init --yes
    touch yarn.lock
 +  echo 'nodeLinker: "node-modules"' > ".yarnrc.yml"
-   yarn add pyodide@0.23.4
+   yarn add deno@2.6.3
+   yarn add pyodide@$PYODIDE_VERSION
    cd ../..
- fi
