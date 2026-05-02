@@ -68,12 +68,15 @@ ram.runtime = "150M"
 
     [resources.permissions]
     main.url = "/"
+    main.auth_header = false
     login.url = "/auth/login"
     login.show_tile = false
     login.allowed = "all_users"
+    login.auth_header = true
     api.url = "/api"
     api.show_tile = false
     api.allowed = "visitors"
+    api.auth_header = false
 
     [resources.ports]
     main.default = 8484
