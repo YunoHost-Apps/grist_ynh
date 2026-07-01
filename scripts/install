@@ -2,7 +2,6 @@
 
 source _common.sh
 source /usr/share/yunohost/helpers
-source ynh_docker_image_extract
 
 #=================================================
 # INITIALIZE AND STORE SETTINGS
@@ -44,7 +43,6 @@ popd
 ynh_script_progression "Installing the sandbox for formulas"
 if [ "$YNH_ARCH" == "amd64" ]; then
   ynh_print_info "amd64 arch detected, use GVisor"
-  _download_dex_from_docker
   sandbox_flavor=gvisor
 else
   pushd "$install_dir/sandbox/pyodide"
