@@ -41,13 +41,13 @@ ynh_script_progression "Installing $app..."
 
 pushd "$install_dir"
   ynh_script_progression "Installing JS dependencies for the build"
-	ynh_hide_warnings ynh_exec_as_app yarn install --frozen-lockfile --network-timeout 600000
+	ynh_hide_warnings ynh_exec_as_app yarn run set-community-edition --frozen-lockfile --network-timeout 600000
   ynh_script_progression "Installing Python dependencies"
 	ynh_hide_warnings ynh_exec_as_app yarn install:python
   ynh_script_progression "Building the app (may take a while)"
 	ynh_hide_warnings ynh_exec_as_app yarn run build:prod
   ynh_script_progression "Fetching the dependencies for the runtime"
-  ynh_hide_warnings ynh_exec_as_app yarn install --prod --frozen-lockfile --network-timeout 600000
+  ynh_hide_warnings ynh_exec_as_app yarn run set-community-edition --prod --frozen-lockfile --network-timeout 600000
 	ynh_hide_warnings ynh_exec_as_app yarn cache clean
 popd
 
