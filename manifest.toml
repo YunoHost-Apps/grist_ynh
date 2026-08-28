@@ -7,7 +7,7 @@ name = "Grist"
 description.en = "Modern relational spreadsheet"
 description.fr = "Feuille de calcul relationnelle moderne"
 
-version = "1.7.17~ynh1"
+version = "1.7.18~ynh1"
 
 maintainers = ["fflorent"]
 
@@ -55,8 +55,8 @@ ram.runtime = "150M"
 
     [resources.sources]
     [resources.sources.main]
-    url = "https://github.com/gristlabs/grist-core/archive/refs/tags/v1.7.17.tar.gz"
-    sha256 = "440f1f931741ebd9dade29b17ad7e36483a28f788cc3e9d7d4a5cb8c1689a296"
+    url = "https://github.com/gristlabs/grist-core/archive/refs/tags/v1.7.18.tar.gz"
+    sha256 = "6daef99b1cfe9d2bea5929dbcc7f504851738d6d323426ac76cb679740ce8931"
 
     autoupdate.strategy = "latest_github_release"
 
